@@ -19,7 +19,7 @@ class TicketManager {
 
     #getMaxId(){
         let maxId = 0;
-        this.events.map((event) => {
+        this.events.map((event)=>{
             if(event.id > maxId) maxId = event.id;
         })
         return maxId;
@@ -30,17 +30,17 @@ class TicketManager {
     }
 
     getEvent(idEvent){
-        return this.events.find((event) => event.id === idEvent)};
+        return this.events.find((event) => event.id === idEvent);
     }
 
-    addUser(idEvent, idUser) {
+    addUser(idEvent, idUser){
         const event = this.getEvent(idEvent);
         if(event) {
-            if(! event.participants.includes(idUser)) event.participants.push(idUser);
-        } else return `this event not exists`
+            if(!event.participants.includes(idUser)) event.participants.push(idUser);
+        } else return 'this event not exists'
     }
 
-    eventTour(idEvent, newSite, newDate)
+    eventTour(idEvent, newSite, newDate){
         const event = this.getEvent(idEvent);
         if(event){
             const newEvent = {
@@ -52,10 +52,13 @@ class TicketManager {
             };
             this.events.push(newEvent);
         } else return `this event not exists`
-    
+    };
 };
 
 const TicketManager = new TicketManager();
 
 TicketManager.addEvent(`Lolapalooza`, `Rio Negro`, 50000);
+TicketManager.addUser(1, 'Marcos')
+TicketManager.addUser(1, 'Pedro')
+TicketManager.eventTour(1, 'Cordoba', new Date("30/10/2023"))
 console.log(TicketManager.getEvents());
